@@ -51,11 +51,12 @@ d3.json(queryURL, function(data) {
             weight: 0.5,
 
             // for the radius, scale the magnitudes otherwise the circles will be too small
-            radius: magnitude * 10000
+            radius: magnitude * 17000
         
         // Add a popup message when circle is clicked 
-        }).bindPopup("<h2>" + features[index].properties.place + "</h2><hr><h4>" + new Date(features[index].properties.time) + "<br>" + 
-            "Location: [" + coords[1] + "," + coords[1] + "]" + "</h4>").addTo(myMap);
+        }).bindPopup("<h2>" + features[index].properties.place + "</h2><hr><h4>" + "Magnitude Level: " + magnitude + 
+            "<br>" + new Date(features[index].properties.time) + "<br>" + 
+            "Location: [" + coords[1] + ", " + coords[1] + "]" + "</h4>").addTo(myMap);
 
     }
 
