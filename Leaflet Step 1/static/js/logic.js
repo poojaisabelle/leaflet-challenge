@@ -36,7 +36,7 @@ d3.json(queryURL).then(function(data) {
 
     // Set up the legend 
     var legend = L.control({position: "bottomright"});
-    legend.onAdd = function(map) {
+    legend.onAdd = function() {
 
         var div = L.DomUtil.create("div", "info legend"),
             magnitudes = [0, 1, 2, 3, 4, 5],
@@ -52,6 +52,8 @@ d3.json(queryURL).then(function(data) {
 
         return div;
     }
+
+    legend.addTo(myMap)
 
 
 
