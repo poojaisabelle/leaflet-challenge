@@ -16,7 +16,7 @@ L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?acce
 var queryURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
 // Perform a GET request to the query URL 
-d3.json(queryURL).then(function(data) {
+d3.json(queryURL, function(data) {
 
     // Get the features data 
     var features = data.features;
@@ -42,7 +42,7 @@ d3.json(queryURL).then(function(data) {
             labels = [];
 
         // Loop through the various magnitudes and assign the colors 
-        for (var index = 0; i < magnitudes.length; index++) {
+        for (var i = 0; i < magnitudes.length; i++) {
 
             div.innerHTML +=
                 '<i style="background:' + getColor(magnitudes[i] + 1) + '"></i> ' +
