@@ -1,3 +1,5 @@
+
+
 // Creating map object
 var myMap = L.map("map", {
     center: [37.0902, -95.7129],
@@ -20,6 +22,26 @@ d3.json(queryURL, function(data) {
 
     // Get the features data 
     var features = data.features;
+
+    // Loop through the features array and create the circles 
+    for (var i = 0; i < features.length; i++) {
+        
+        // Create new variables for the coordinates and magnitude 
+        // of the earthquakes 
+        var magnitude = features[i].properties.mag;
+        var coords = features[i].geometry.coordinates;
+
+        // Create circles
+        L.circle([coords[0], coords[1]], {
+            fillOpacity: 0.75,
+            color:"white",
+
+            // for the radius, scale the magnitudes 
+            // otherwise the circles will be too small
+            radius: magnitude *10000
+        }).bindPopup("<h1>" + cities[i].name + "</h1> <hr> <h3>Population: " + cities[i].population + "</h3>")
+
+    }
 
     // Create function to obtain different colors according to magnitude
     // of the earthquake 
