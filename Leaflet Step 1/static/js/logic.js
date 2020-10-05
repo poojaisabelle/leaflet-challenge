@@ -36,51 +36,46 @@ d3.json(queryURL, function(data) {
     var features = data.features;
 
     // Loop through the features array and create the circles 
-    for (var i = 0; i < features.length; i++) {
+    for (var index = 0; index < features.length; index++) {
         
         // Create new variables for the coordinates and magnitude 
         // of the earthquakes 
-        var magnitude = features[i].properties.mag;
-        var coords = features[i].geometry.coordinates;
+        var magnitude = features[index].properties.mag;
+        var coords = features[index].geometry.coordinates;
 
-        // Create circles
-        L.circle(
-            [coords[1], coords[0]], {
-                fillOpacity: 0.75,
-                fillColor: getColor(magnitude),
-                color: "black",
-                weight: 0.25,
-                // for the radius, scale the magnitudes 
-                // otherwise the circles will be too small
-                radius: magnitude * 10000
-        }).bindPopup("<h2>" + features[i].properties.place + "</h2><hr><h4>" + new Date(features[i].properties.time) + "<br>" + 
+        // Create circles and add them to the map 
+        L.circle([coords[1], coords[0]], {
+            fillOpacity: 0.75,
+            fillColor: getColor(magnitude),
+            color: "black",
+            weight: 0.5,
+
+            // for the radius, scale the magnitudes otherwise the circles will be too small
+            radius: magnitude * 10000
+        
+        // Add a popup message when circle is clicked 
+        }).bindPopup("<h2>" + features[index].properties.place + "</h2><hr><h4>" + new Date(features[index].properties.time) + "<br>" + 
             "Location: [" + coords[1] + "," + coords[1] + "]" + "</h4>").addTo(myMap);
 
     }
-
 
     // Set up the legend 
     var legend = L.control({position: "bottomright"});
     legend.onAdd = function() {
 
         var div = L.DomUtil.create("div", "info legend"),
-            magnitudes = [0, 1, 2, 3, 4, 5],
+            magLevels = [0, 1, 2, 3, 4, 5],
             labels = [];
 
         // Loop through the various magnitudes and assign the colors 
-        for (var i = 0; i < magnitudes.length; i++) {
+        for (var i = 0; i < magLevels.length; i++) {
 
             div.innerHTML +=
-                '<i style="background:' + getColor(magnitudes[i] + 1) + '"></i> ' +
-                magnitudes[i] + (magnitudes[i + 1] ? '&ndash;' + magnitudes[i + 1] + '<br>' : '+');
+                '<i style="background:' + getColor(magLevels[i] + 1) + '"></i> ' +
+                magLevels[i] + (magLevels[i + 1] ? '&ndash;' + magLevels[i + 1] + '<br>' : '+');
         }
-
         return div;
     };
 
     legend.addTo(myMap)
-
-
-
-
 });
