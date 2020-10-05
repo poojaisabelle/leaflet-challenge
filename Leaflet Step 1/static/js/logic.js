@@ -33,7 +33,6 @@ d3.json(queryURL).then(function(data) {
         
     }
 
-
     // Set up the legend 
     var legend = L.control({position: "bottomright"});
     legend.onAdd = function() {
@@ -51,7 +50,7 @@ d3.json(queryURL).then(function(data) {
         }
 
         return div;
-    }
+    };
 
     legend.addTo(myMap)
 
