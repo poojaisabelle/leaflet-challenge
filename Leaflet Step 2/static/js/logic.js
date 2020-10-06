@@ -31,12 +31,27 @@ var baseMaps = {
     "Outdoors": outdoorsMap
 }
 
+// Create two layer groups for the fault lines and earthquakes
+var faultLines = new L.layerGroup();
+var earthquakes = new L.layerGroup();
+
 // Create an overlay object 
 var overlayMaps = {
-    "Fault Lines": new L.layerGroup(),
-    "Earthquakes": new L.layerGroup()
+    "Fault Lines": faultLines,
+    "Earthquakes": earthquakes
 }
 
+// Define the map object and pass in the various layers 
+var myMap = L.map("map", {
+    center: [37.0902, -95.7129],
+    zoom: 5,
+    layers: [satelliteMap, faultLines, earthquakes]
+});
+
+// Pass the map layers into the layer control
+L.control.layers(baseMaps, overlayMaps, {
+    collapsed:false
+}).addTo(myMap);
 
 
 
