@@ -15,7 +15,7 @@ The data used in this challenge comes from two sources:
 
 ### Level 1: Visualise Earthquakes
 
-![Earthquake Map](Images/Leaflet_1)
+![Earthquake Map](Images/Leaflet_1.png)
 
 The main objective of this first challenge was to create a map using Leaflet, that plots all of the earthquakes from the dataset based on their longitude and latitude. The features added were: 
 
@@ -28,7 +28,7 @@ The main objective of this first challenge was to create a map using Leaflet, th
 
 ### Level 2: Visualise Earthquakes with Tectonic Plates
 
-![Earthquake and Tectonic Map](Images/Leaflet_2)
+![Earthquake and Tectonic Map](Images/Leaflet_2.png)
 
 The main objective of this second challenge was to plot a second data set unto the first map that will illustrate the relationship between tectonic plates and seismic acticity. Addional features included were: 
 
