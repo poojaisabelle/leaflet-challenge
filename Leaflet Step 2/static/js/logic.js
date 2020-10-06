@@ -17,14 +17,25 @@ var grayScaleMap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/til
   });
 
 // Outdoors layer 
-var putdoorsMap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+var outdoorsMap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
     id: "outdoors-v11",
     accessToken: API_KEY
   });
 
-//
+// Create a baseMaps object 
+var baseMaps = {
+    "Satellite": satelliteMap,
+    "Grayscale": grayScaleMap,
+    "Outdoors": outdoorsMap
+}
+
+// Create an overlay object 
+var overlayMaps = {
+    "Fault Lines": new L.layerGroup(),
+    "Earthquakes": new L.layerGroup()
+}
 
 
 
