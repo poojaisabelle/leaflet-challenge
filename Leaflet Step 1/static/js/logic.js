@@ -1,4 +1,4 @@
-// Creating map object and passing in US coordinates 
+// Creating map object and passing in US coordinates as the center
 var myMap = L.map("map", {
     center: [37.0902, -95.7129],
     zoom: 5
@@ -57,7 +57,6 @@ d3.json(queryURL, function(data) {
         }).bindPopup("<h2>" + features[index].properties.place + "</h2><hr><h4>" + "Magnitude Level: " + magnitude + 
             "<br>" + new Date(features[index].properties.time) + "<br>" + 
             "Location: [" + coords[1] + ", " + coords[1] + "]" + "</h4>").addTo(myMap);
-
     }
 
     // Set up the legend 
