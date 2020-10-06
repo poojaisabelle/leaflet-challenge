@@ -31,7 +31,7 @@ var baseMaps = {
     "Outdoors": outdoorsMap
 }
 
-// Create two layer groups for the fault lines and earthquakes
+// Create two separate layer groups for the fault lines and earthquakes
 var faultLines = new L.layerGroup();
 var earthquakes = new L.layerGroup();
 
@@ -41,7 +41,7 @@ var overlayMaps = {
     "Earthquakes": earthquakes
 }
 
-// Define the map object and pass in the various layers 
+// Define the map object and pass the default
 var myMap = L.map("map", {
     center: [37.0902, -95.7129],
     zoom: 5,
@@ -89,7 +89,6 @@ d3.json(tectonicURL, function(data) {
 // Perform a GET request to the earthquake URL 
 d3.json(earthquakeURL, function(data) {
 
-
     // Create function to obtain different colors according to magnitude of the earthquake 
     // Will be used as fillColor when circles are added to the map
     function getColor(d) {
@@ -113,12 +112,12 @@ d3.json(earthquakeURL, function(data) {
         var magnitude = features[index].properties.mag;
         var coords = features[index].geometry.coordinates;
 
-        // Create circles and add them to the map 
+        // Create circles and add them to the nwe layer group 
         var markers = L.circle([coords[1], coords[0]], {
-            fillOpacity: 0.75,
+            fillOpacity: 0.8,
             fillColor: getColor(magnitude),
             color: "black",
-            weight: 0.5,
+            weight: 0.25,
             // for the radius, scale the magnitudes otherwise the circles will be too small
             radius: magnitude * 17000
         });
