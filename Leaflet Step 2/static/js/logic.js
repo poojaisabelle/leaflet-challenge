@@ -81,7 +81,7 @@ d3.json(tectonicURL, function(data) {
 
         // Create the polyline using the new coords 
         var tectonicPlates = L.polyline(newCoords, {
-            color: "#ffeda0"
+            color: "#feb24c"
         }).addTo(faultLines);
     }
 });
