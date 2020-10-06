@@ -68,18 +68,23 @@ d3.json(tectonicURL, function(data) {
     for (var index = 0; index < features.length; index++) {
 
         // Save the coordinates in a new variable 
-        // var coords = features[index].geometry.coordinates;
+        var coords = features[index].geometry.coordinates;
         // console.log(coords);
 
-        // Coordinates are not in correct format, they need to be adjusted 
-        
+        // Coordinates are not in correct format, they need to be flipped
+        // Create new array to store the flipped coords
+        var newCoords = [];
 
+        // Push the changes to new array 
+        newCoords.push(coords.map(c => [c[1], c[0]]));
+        // console.log(newCoords);
 
-
-
-
-
+        // Create the polyline using the new coords 
+        var tectonicPlates = L.polyline(newCoords, {
+            color: "#ffeda0"
+        }).addTo(faultLines);
     }
+});
 
 
 
@@ -142,4 +147,4 @@ d3.json(tectonicURL, function(data) {
     // };
 
     // legend.addTo(myMap)
-});
+
